@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.0](https://github.com/monad-crypto/monad-solonet/compare/v1.0.0...v1.1.0) (2026-04-10)
+
+
+### Features
+
+* implement RPC websocket ([1498888](https://github.com/monad-crypto/monad-solonet/commit/1498888fdc25699ed8853b127ab32fdb19dd9e6e))
+* print epoch ([6d94bce](https://github.com/monad-crypto/monad-solonet/commit/6d94bcef2c951411e570b7bceb0a6a6d418604e7))
+* support batched calls on rpc printer ([aaad15e](https://github.com/monad-crypto/monad-solonet/commit/aaad15e261049c5b6032bedaae04c887bf57fb6d))
+* upgrade monad to 0.14.1 ([953aedc](https://github.com/monad-crypto/monad-solonet/commit/953aedc96645699d59012fed2bea119d060e4547))
+
 ## 1.0.0 (2026-04-10)
 
 
