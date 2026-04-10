@@ -67,8 +67,9 @@ echo "$NODES"
 echo
 echo "RPC endpoint:        http://localhost:8080"
 echo "WebSocket endpoint:  ws://localhost:8081"
-echo "Dashboard            http://localhost:8082"
-echo "CORS RPC endpoint:   http://localhost:8082/rpc/"
+echo
+echo "Dashboard:           http://localhost:8082"
+echo "RPC endpoint (CORS): http://localhost:8082/rpc/"
 echo
 
 show_rpc_methods || true

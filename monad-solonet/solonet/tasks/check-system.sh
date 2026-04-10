@@ -16,6 +16,21 @@ else
   exit 1
 fi
 
+KERNEL_VERSION=$(uname -r | cut -d'-' -f1,2 | tr '-' '.')
+MIN_KERNEL="6.8.0.60"
+if version_gte "$KERNEL_VERSION" "$MIN_KERNEL"; then
+  echo "✅ Kernel version $KERNEL_VERSION meets recommendation (>= $MIN_KERNEL-generic)"
+else
+  echo "⚠️ Kernel version $KERNEL_VERSION is below recommended $MIN_KERNEL-generic"
+  echo "We recommend v${MIN_KERNEL}-generic or higher."
+fi
+
+TOTAL_RAM_MB=$(free -m | awk '/Mem/{print $2}')
+if [ "$TOTAL_RAM_MB" -lt 7000 ]; then
+  echo "ERROR: Minimum 8GB RAM required (found ${TOTAL_RAM_MB}MB)"
+  exit 1
+fi
+
 SOFT=$(ulimit -Sn)
 HARD=$(ulimit -Hn)
 EXPECTED="16384"

@@ -34,6 +34,10 @@ fail() {
   return 1
 }
 
+version_gte() {
+  printf '%s\n%s' "$2" "$1" | sort -V -C
+}
+
 is_privileged() {
   # Needs /proc mounted (it is by default in Docker)
   # Looks for the "all capabilities granted" mask inside the container.
