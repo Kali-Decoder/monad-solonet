@@ -1,5 +1,11 @@
+const dashboardPort = parseInt(window.location.port) || 8082;
+const rpcPort = dashboardPort - 2;
+const wsPort = dashboardPort - 1;
+const nodeOffset = (dashboardPort - 8082) / 100;
+const nodeId = nodeOffset === 0 ? 1 : nodeOffset;
+
 const RPC_URL = `${window.location.origin}/rpc/`;
-const WS_URL = `ws://${window.location.hostname}:8081`;
+const WS_URL = `ws://${window.location.hostname}:${wsPort}`;
 let userAddress = null;
 let ws = null;
 const wsPending = {};
@@ -303,7 +309,44 @@ async function registerToMetaMask() {
   }).catch(e => alert(e.message));
 }
 
+function updateNetworkInfo() {
+  const host = window.location.hostname;
+  document.getElementById('infoNodeId').innerText = `Node ${nodeId}`;
+  document.getElementById('infoRpc').innerText = `http://${host}:${rpcPort}`;
+  document.getElementById('infoWs').innerText = `ws://${host}:${wsPort}`;
+  document.getElementById('infoCorsRpc').innerText = `http://${host}:${dashboardPort}/rpc/`;
+  document.getElementById('infoDashboard').innerText = `http://${host}:${dashboardPort}`;
+}
+
+function setKeyElement(id, fullKey) {
+  const el = document.getElementById(id);
+  el.title = fullKey;
+  el.innerText = fullKey.slice(0, 10) + '…' + fullKey.slice(-8);
+}
+
+async function fetchNodeKeys() {
+  try {
+    const res = await fetch(`/shared/peers/node-${nodeId}.yaml`);
+    if (!res.ok) return;
+    const text = await res.text();
+    let section = null;
+    for (const line of text.split('\n')) {
+      const sectionMatch = line.match(/^(\w+):$/);
+      if (sectionMatch) { section = sectionMatch[1]; continue; }
+      if (section) {
+        const kv = line.match(/^\s+public_key:\s*(.+)$/);
+        if (kv) {
+          if (section === 'secp256k1') setKeyElement('infoSecpKey', kv[1].trim());
+          if (section === 'bls') setKeyElement('infoBlsKey', kv[1].trim());
+        }
+      }
+    }
+  } catch (e) { console.error('Failed to fetch node keys', e); }
+}
+
 document.getElementById('solonetVersion').innerText = window.SOLONET_VERSION ?? '—';
+updateNetworkInfo();
+fetchNodeKeys();
 renderAccounts();
 connectBlockHeightWS();
 updateStats();

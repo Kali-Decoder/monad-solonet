@@ -54,4 +54,5 @@ EOF
 
 mkdir -p "$PEERS_PATH"
 cp "$TMP_PEER_FILE" "$PEER_FILE"
+chmod a+r "$PEER_FILE"
 cat "$PEER_FILE"

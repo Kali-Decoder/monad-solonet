@@ -6,6 +6,7 @@ if [[ -z "${OVERRIDE_MONAD_VERSION:-}" ]]; then
   echo "ℹ️ Using default monad version from the image: $CURRENT"
   echo "Override monad version using OVERRIDE_MONAD_VERSION environment variable"
   echo "Example: --env OVERRIDE_MONAD_VERSION=$CURRENT"
+  echo "Note: this can break if incompatible with this version of solonet"
   return
 fi
 

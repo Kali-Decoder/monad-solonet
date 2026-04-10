@@ -240,6 +240,12 @@ header .badge {
     color: var(--monad-cyan-light);
 }
 
+.key-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 /* ── Dev accounts ────────────────────────────────────────── */
 
 .dev-wallet {
