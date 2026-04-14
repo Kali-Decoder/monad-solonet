@@ -57,8 +57,7 @@ docker run --rm -it \
 - Automatic node configuration and validator staking
 - Pre-installed tooling: `forge`, `cast`, `staking-cli`, `monad-status`
 
-
-<video src="https://github.com/user-attachments/assets/d6233ed0-5b6b-4e55-9109-3af283cda4a4" width="700" controls></video>
+https://github.com/user-attachments/assets/4e2fb3cb-cd05-4544-8f89-30eb0675cc20
 
 Runtime notes:
 - Epoch duration set to `10_000` blocks, about 1 hour
