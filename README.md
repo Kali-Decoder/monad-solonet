@@ -27,12 +27,24 @@ On macOS (Apple Silicon), prepare the Linux VM:
 brew install lima colima lima-additional-guestagents
 
 # Start a Docker host on a Linux VM
-colima start --arch x86_64 --cpu-type max --cpu 8 --memory 16 --disk 300 --foreground
+colima start \
+  --arch x86_64 \
+  --cpu-type max \
+  --cpu 8 \
+  --memory 16 \
+  --disk 300 \
+  --foreground
 ```
 
 Start a Monad Solonet on a Linux Docker host, using the prebuild [`monadcrypto/monad-solonet`](https://hub.docker.com/r/monadcrypto/monad-solonet) Docker image:
 ```sh
-docker run --name solonet --rm -it --privileged --network host --pull always monadcrypto/monad-solonet
+docker run --rm -it \
+  --name solonet \
+  --privileged \
+  --network host \
+  --ulimit nofile=16384:16384 \
+  --pull always \
+  monadcrypto/monad-solonet
 ```
 
 ## Features
