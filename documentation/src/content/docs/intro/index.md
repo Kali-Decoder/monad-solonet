@@ -2,13 +2,10 @@
 title: "Introduction"
 description: "Monad Solonet is a fully containerized local execution environment for running complete Monad blockchain networks on your machine."
 ---
-
 # Monad Solonet Documentation
-
 **Monad Solonet** is a fully containerized local execution environment for running complete Monad blockchain networks on your machine.
 
 ---
-
 
 ## What is Monad Solonet?
 
